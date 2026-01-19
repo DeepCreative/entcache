@@ -6,28 +6,28 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goversion: [1.17, 1.16]
+        goversion: ['1.22', '1.21']
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.goversion }}
       - name: Run linters
-        uses: golangci/golangci-lint-action@v2.5.2
+        uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.41.1
+          version: latest
           args: --timeout 3m
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goversion: [1.17, 1.16]
+        goversion: ['1.22', '1.21']
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.goversion }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             ~/go/pkg/mod
