@@ -1,0 +1,16 @@
+# =============================================================================
+# BZ org lefthook config — drop into any repo, then run: lefthook install
+# =============================================================================
+# Pulls the org-wide pre-push CI gate from bz-workspace.
+# Override or extend hooks below the remotes block as needed.
+#
+# Commit this file so all contributors get the hooks via `lefthook install`.
+#
+# Bypass in emergencies: git push --no-verify
+# =============================================================================
+
+remotes:
+  - git_url: git@github.com:DeepCreative/bz-workspace.git
+    ref: main
+    configs:
+      - guard/lefthook/org-defaults.yml
